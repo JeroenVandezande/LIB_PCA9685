@@ -22,7 +22,10 @@ int PCA9685_Init(struct PCA9685_t* instance, uint8_t address, uint16_t pwmfreque
 	instance->I2CAddress = BASE_ADDRESS | (address << 1); //shift one bit to the left for R/W bit
     struct pca9685setupreg rd;
     rd.registeraddress = 0xFE; //prescaler
-    rd.registerdata = round(CHIPCLK / (4096 * pwmfrequency));
+    rd.registerdata = (uint8_t)round(CHIPCLK / (4096 * pwmfrequency));
+	instance->i2cWriteDataMethod(instance->I2CAddress, &rd, 2);
+	rd.registeraddress = 0x00; //MODE1
+	rd.registerdata = 0b00100000;
 	instance->i2cWriteDataMethod(instance->I2CAddress, &rd, 2);
 	rd.registeraddress = 0x01; //MODE2
 	rd.registerdata = invertOutputs ? 1 << 4 : 0; //set output invert bit
