@@ -5,7 +5,7 @@ set(CMAKE_C_STANDARD 99)
 
 # add dependencies
 include(cpm/CPM.cmake)
-CPMAddPackage("gh:JeroenVandezande/LowLevelCInterfaces@1.0.6")
+CPMAddPackage("gh:JeroenVandezande/LowLevelCInterfaces@1.2.0")
 
 add_library(LIB_PCA9685 PCA9685.c PCA9685.h)
 

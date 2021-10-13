@@ -16,7 +16,7 @@ struct PCA9685_t
 	//PUBLIC INSTANCE MEMBERS
 	uint8_t I2CAddress;
 	//points to a function to handle the I2C writes
-	I2CMaster_WriteMethod_t i2cWriteDataMethod;
+	LL_I2CMaster_WriteMethod_t i2cWriteDataMethod;
 };
 
 int PCA9685_Init(struct PCA9685_t* instance, uint8_t address, uint16_t pwmfrequency, enum PCA9685_OutputMode_t outputMode, bool invertOutputs);
